@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Services</title>
+    <link rel="stylesheet" href="/dist/styles.css"> <!-- Link to the generated CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">Available SMS Services</h1>
+        <ul id="serviceList" class="list-disc list-inside space-y-4">
+            <!-- List items will be inserted here -->
+        </ul>
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">Example</h1>
+        <!-- curl -X POST "http://localhost/api/send-sms" -d "serviceName=kannithi2020&mobileNo=0822189618&message=Hello%20World -->
+        <div class="relative">
+            <input type="text" id="curlCommand" class="w-full p-2 border border-gray-300 rounded"
+                value='curl -X POST "http://{{ip}}/api/send-sms" -d "serviceName={{Service Name}}&mobileNo={{Mobile Phone}}&message={{Message}}"'>
+            <button id="copyButton"
+                class="absolute right-2 top-2 px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <i class="fas fa-copy"></i> <!-- Font Awesome copy icon -->
+            </button>
+        </div>
+        <div class="flex justify-items-end">
+            <a href="/" class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Go back to
+                the
+                homepage</a>
+        </div>
+    </div>
+
+    <script src="/js/sms-script.js">
+    </script>
+
+</body>
+
+</html>

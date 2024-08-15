@@ -1,0 +1,38 @@
+{
+  "name": "bone-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i ./public/css/styles.css -o ./public/dist/styles.css",
+    "start": "node index.js",
+    "dev": "nodemon --env-file=.env index.js",
+    "uat": "node --env-file=.env.uat index.js",
+    "prod": "node --env-file=.env.prod index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "moment-timezone": "^0.5.45",
+    "mysql2": "^3.11.0",
+    "nodemon": "^3.1.4",
+    "path": "^0.12.7",
+    "postcss": "^8.4.40",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "tailwindcss": "^3.4.7",
+    "winston": "^3.14.1"
+  }
+}

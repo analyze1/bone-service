@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+      # - "443:443"
+    # networks:
+    # - app-network
+#   api:
+#     image: appropriate/curl
+#     depends_on:
+#       - web
+#     networks:
+#       - app-network
+#     command: ["curl", "http://web:3000"]
+# networks:
+#   app-network:
+#     driver: bridge

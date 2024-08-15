@@ -1,0 +1,29 @@
+[
+  {
+    "title": "kannithi2020",
+    "description": "Kannithi2020",
+    "account": "kannithi@fourinsura",
+    "password": "519B9B4AC4648C7B84650E512D8767A2D0A768DF21456AD92984F1E77C41ED2AFDAEA362275D9774",
+    "baseUrl": "https://u8-2.sc4msg.com/SendMessage",
+    "port": "443",
+    "category": "General"
+  },
+  {
+    "title": "fourinsure",
+    "description": "fourinsure",
+    "account": "fourinsure@fourinsura",
+    "password": "xxx",
+    "baseUrl": "https://u8-2.sc4msg.com/SendMessage",
+    "port": "443",
+    "category": "General"
+  },
+  {
+    "title": "lmgvertech",
+    "description": "LMG",
+    "account": "lmgvertech@fourinsura",
+    "password": "35AE88C97F3FBE5DB268B10CBA6EE85E57C572A2C716B529F75367A00EB975A354A94FC3C0DC3F27",
+    "baseUrl": "https://u8-2.sc4msg.com/SendMessage",
+    "port": "443",
+    "category": "General"
+  }
+]
