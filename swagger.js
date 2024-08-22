@@ -17,6 +17,18 @@ const options = {
             version: '1.0.0 Beta',
         },
         host: 'localhost:3000',
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [{
+            bearerAuth: [],
+        }],
     },
     apis: [
         './swagger/brand/*.js',
@@ -24,8 +36,19 @@ const options = {
         './swagger/costs/*.js',
         './swagger/sms/*.js',
         './swagger/bitly/*.js',
+        './swagger/auth/*.js',
+        './swagger/security.js',
 
     ], // Path to your API routes
+    servers: [{
+        url: URL,
+        description: 'Development server',
+        variables: {
+            Authorization: {
+                default: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwidXNlcm5hbWUiOiJzd2FnZ2VyIiwicm9sZSI6bnVsbCwiaWF0IjoxNzI0MTMwMjg0LCJleHAiOjE3MjQxMzM4ODR9.YokZEo4mhDAMCPHriwyyjYkFBAHTsqQIH9484YUOeWc'
+            }
+        },
+    }],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

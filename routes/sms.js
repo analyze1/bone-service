@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { init } = require('../app/controllers/sendSMSController');
+const sendSmsController = require('../app/controllers/sendSMSController');
 const { readJsonFile } = require('../app/controllers/readJsonFileController');
 
 require('./../swagger/sms/send');
@@ -14,9 +14,7 @@ router.get('/list', async (req, res) => {
     }
 });
 
-router.post('/send', async (req, res) => {
-    const sendSmsService = init(req, res);
-    res.json(sendSmsService);
-});
+router.post('/send', sendSmsController.sms);
+router.post('/multiple-send', sendSmsController.multipleSendSms)
 
 module.exports = router;

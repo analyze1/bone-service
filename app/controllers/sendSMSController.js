@@ -1,4 +1,4 @@
-const axios = require('axios');
+const { sendSms } = require('./../providers/smsService');
 const { readJsonFile } = require('./readJsonFileController');
 
 /**
@@ -13,7 +13,7 @@ const { readJsonFile } = require('./readJsonFileController');
  * @returns {Promise<Object>} The data from the JSON file or an error message.
  * @async
  */
-async function init(req, res) {
+const sms = async (req, res) => {
     try {
         const { serviceName, mobileNo, message } = req.body;
         // console.log(serviceName, mobileNo, message);
@@ -41,37 +41,50 @@ async function init(req, res) {
     }
 }
 
+const multipleSendSms = async (req, res) => {
+    try {
+        // example of req.body: { "serviceName": "service1", data: [{ "mobileNo": "1234567890", "message": "Hello" }, { "mobileNo": "0987654321", "message": "Hi" }] }
+        const { serviceName, data } = req.body;
+        console.log(req.body, 'req.body');
+        console.log(serviceName, data);
+        const fileName = 'sms.json';
+        const serviceData = await readJsonFile(fileName);
+        const service = await findService(serviceData, serviceName);
+        if (!service) {
+            console.log({ error: 'Service not found' });
+            return res.status(404).json({ error: 'Service not found' });
+        }
+        const { account, password, category, baseUrl } = service;
+        const responses = [];
+        for (const item of data) {
+            const { mobileNo, message } = item;
+            const response = await sendSms(account, password, mobileNo, message, category, baseUrl);
+            responses.push(response);
+        }
+        // return {
+        //     success: responses,
+        //     message: 'SMS sent successfully',
+        //     details: {
+        //         serviceName: serviceName,
+        //         data: data
+        //     }
+        // };
+        return res.status(200).json({
+            success: responses,
+            message: 'SMS sent successfully',
+            details: {
+                serviceName: serviceName,
+                data: data
+            }
+        }, 200);
+
+    } catch (err) {
+        console.error("Error reading JSON file: ", err);
+        return res.status(500).json({ error: 'Failed to read JSON file' });
+    }
+}
 async function findService(data, serviceName) {
     return data.find(s => s.title === serviceName);
 }
 
-
-async function sendSms(account, password, mobileNo, message, category, baseurl) {
-
-    // console.log(account, password, mobileNo, message, category, baseurl);
-
-    const params = new URLSearchParams(
-        {
-            ACCOUNT: account,
-            PASSWORD: password,
-            MOBILE: mobileNo,
-            MESSAGE: message
-        }
-    );
-
-    try {
-        const response = await axios.post(baseurl, params.toString(), {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            maxRedirects: 0
-        });
-        console.log("Response from SMS API: ", response.data);
-        return { status: 'success', data: response.data || 'Success', message: 'SMS sent successfully' };
-    } catch (error) {
-        console.log("Error from SMS API: ", error.message);
-        return error.message;
-    }
-}
-
-module.exports = { init, sendSms };
+module.exports = { sms, multipleSendSms };
