@@ -8,7 +8,9 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+RUN npm run build:css
+
+EXPOSE 8888
 # EXPOSE 443
 
-CMD [ "node", "index.js" ]
+CMD [ "npm", "run", "uat" ]
