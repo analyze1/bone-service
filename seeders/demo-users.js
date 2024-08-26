@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
     async up(queryInterface, Sequelize) {
-        const salt = await bcrypt.genSalt(10);
+        const salt = await "" + bcrypt.genSalt(10) + "";
 
         // Define your mockup users
         const users = [

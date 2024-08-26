@@ -15,10 +15,10 @@ router.post('/api/auth/register', register);
 router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 router.use('/api/sms', smsRoutes);
+router.use('/api/bitly', bitlyRoutes);
 router.use(verifyJWT);
 router.use('/api/brands', brandRoutes);
 router.use('/api/submodels', subModelRoutes);
-router.use('/api/bitly', bitlyRoutes);
 
 router.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../views', '404.html'));

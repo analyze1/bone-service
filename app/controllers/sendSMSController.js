@@ -57,18 +57,13 @@ const multipleSendSms = async (req, res) => {
         const { account, password, category, baseUrl } = service;
         const responses = [];
         for (const item of data) {
+            // delay 0.5 seconds
             const { mobileNo, message } = item;
             const response = await sendSms(account, password, mobileNo, message, category, baseUrl);
+            // await new Promise((resolve) => setTimeout(resolve, 500));
+            DelayNode(500);
             responses.push(response);
         }
-        // return {
-        //     success: responses,
-        //     message: 'SMS sent successfully',
-        //     details: {
-        //         serviceName: serviceName,
-        //         data: data
-        //     }
-        // };
         return res.status(200).json({
             success: responses,
             message: 'SMS sent successfully',

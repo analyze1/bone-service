@@ -25,7 +25,7 @@ const limiter = rateLimit({
 // middleware
 app.use(requestLogger);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(limiter);
